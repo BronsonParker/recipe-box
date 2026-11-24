@@ -1,12 +1,15 @@
+// Defining variables.
 const input = document.getElementById("recipe-id");
 const getBtn = document.getElementById("get-btn");
 const getStatus = document.getElementById("status");
 const recipeArea = document.getElementById("recipe");
 
-async function.getRecipe() {
-    recipeArea.textContent=""
+async function getRecipe() {
+    const url = `https://dummyjson.com/recipes/${input.value}`
+    // To ensure old recipes are cleared out when new ones are entered.
+    recipeArea.textContent="";
 
-    const response = await fetch(`https://dummyjson.com/recipes/${input.value}`);
+    const response = await fetch(url);
     const recipe = await response.json();
     console.log(recipe);
 
@@ -22,11 +25,14 @@ async function.getRecipe() {
     card.appendChild(cuisine);
 
     const time = document.createElement("p");
-    time.textContent = "Cook Time: " + recipe.prepTimeMinutes + " Minutes"
+    time.textContent = "Cook Time: " + recipe.prepTimeMinutes + " Minutes";
     card.appendChild(time);
 
-    const img = 
-}
+    recipeArea.appendChild(card);
+
+    // Clears the input box.
+    input.value = "";
+};
 
 getBtn.addEventListener("click", getRecipe);
 
