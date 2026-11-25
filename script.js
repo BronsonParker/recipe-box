@@ -49,6 +49,12 @@ async function getRecipe() {
     time.textContent = "Cook Time: " + recipe.prepTimeMinutes + " Minutes";
     card.appendChild(time);
 
+    const img = document.createElement("img");
+    img.src = recipe.image;
+    img.alt = recipe.name;
+    img.className = "rounded-3";
+    card.appendChild(img);
+
     recipeArea.appendChild(card);
 
     // Clears input and loading text when it loads the card.
